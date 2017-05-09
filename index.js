@@ -8,7 +8,12 @@ for (var index in startUrls) {
     var url = startUrls[index];
     request(url, function (error, response, body) {
         if (!error && response.statusCode == 200) {
-            cheerio.load(body);
+            var html = cheerio.load(body);
+            var div = html.select("div.phimage");
+            console.info(div.length);
+            for (var dindex in div) {
+                console.info(div[dindex].html());
+            }
         }
     })
 }
